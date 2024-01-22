@@ -1,14 +1,14 @@
-
-
+import moduleCreateElement from './createElements.js';
 const {
   createRow,
-} = require('./createElements');
+} = moduleCreateElement;
 
+import moduleStorageControl from './storageControl.js';
 const {
   getStorage,
   setStorage,
   removeStorage,
-} = require('./storageControl');
+} = moduleStorageControl;
 
 const hoverRow = (allRow, logo) => {
   const text = logo.textContent;
@@ -91,7 +91,7 @@ const formControl = (form, list, closeModal, title) => {
   });
 };
 
-module.exports = {
+export default {
   hoverRow,
   modalControl,
   deleteControl,

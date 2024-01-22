@@ -1,40 +1,37 @@
+import {renderPhoneBook as myPhoneBook, renderContact}
+  from './modules/renderElements.js';
 
-{
+import moduleEvent from './modules/eventControl.js';
+const {
+  hoverRow,
+  modalControl,
+  deleteControl,
+  formControl,
+} = moduleEvent;
+
+const init = (selectorApp, title) => {
+  const app = document.querySelector(selectorApp);
+
   const {
-    hoverRow,
-    modalControl,
-    deleteControl,
-    formControl,
-  } = require('./modules/eventControl');
+    list,
+    logo,
+    btnAdd,
+    formOverlay,
+    form,
+    btnDel,
+  } = myPhoneBook(app, title);
 
-  const {
-    renderPhoneBook,
-    renderContact,
-  } = require('./modules/renderElements');
+  // Функционал
+  const allRow = renderContact(list, title);
 
-  const init = (selectorApp, title) => {
-    const app = document.querySelector(selectorApp);
+  // Форма (открытие, закрытие)
+  const {closeModal} = modalControl(btnAdd, formOverlay);
 
-    const {
-      list,
-      logo,
-      btnAdd,
-      formOverlay,
-      form,
-      btnDel,
-    } = renderPhoneBook(app, title);
+  // Наведение на ряды
+  hoverRow(allRow, logo);
+  deleteControl(btnDel, list, title);
+  formControl(form, list, closeModal, title);
+};
 
-    // Функционал
+window.phoneBookInit = init;
 
-    // Наведение на ряды
-    const allRow = renderContact(list, title);
-
-    // Форма (открытие, закрытие)
-    const {closeModal} = modalControl(btnAdd, formOverlay);
-    hoverRow(allRow, logo);
-    deleteControl(btnDel, list, title);
-    formControl(form, list, closeModal, title);
-  };
-
-  window.phoneBookInit = init;
-}

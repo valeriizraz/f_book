@@ -1,3 +1,4 @@
+import moduleCreateElements from './createElements.js';
 const {
   createHeader,
   createLogo,
@@ -7,14 +8,15 @@ const {
   createFooter,
   createForm,
   createRow,
-} = require('./createElements');
+} = moduleCreateElements;
 
+import moduleStorageControl from './storageControl.js';
 const {
   getStorage,
-} = require('./storageControl');
+} = moduleStorageControl;
 
 // Render
-const renderPhoneBook = (app, title) => {
+export const renderPhoneBook = (app, title) => {
   const header = createHeader();
   const logo = createLogo(title);
   const main = createMain();
@@ -49,7 +51,7 @@ const renderPhoneBook = (app, title) => {
   };
 };
 
-const renderContact = (elem, title) => {
+export const renderContact = (elem, title) => {
   const local = getStorage(title);
 
   const allRow = local.map(createRow);
@@ -57,7 +59,3 @@ const renderContact = (elem, title) => {
   return allRow;
 };
 
-module.exports = {
-  renderPhoneBook,
-  renderContact,
-};

@@ -3,10 +3,8 @@ const getStorage = (key) => {
   const local = localStorage.getItem(key);
 
   if (local === null) {
-    console.log(local);
     return [];
   } else {
-    console.log(local);
     return JSON.parse(local);
   }
 };
@@ -28,7 +26,7 @@ const removeStorage = (local, phone, title) => {
   });
 };
 
-module.exports = {
+export default {
   getStorage,
   setStorage,
   removeStorage,
